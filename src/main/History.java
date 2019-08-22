@@ -4,6 +4,10 @@ public class History {
 
     String result;
 
+    public History() {
+
+    }
+
     public History(String result) {
         this.result = result;
     }
@@ -16,3 +20,4 @@ public class History {
         this.result = val;
     }
 }
+

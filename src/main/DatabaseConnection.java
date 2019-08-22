@@ -1,15 +1,15 @@
 package main;
 
 import java.sql.*;
+import com.mysql.cj.jdbc.Driver;
 
 public class DatabaseConnection {
-    
+
     private String URL = "";
     private String USER = "";
     private String PASS = "";
-    
-    
-    public DatabaseConnection(String URL,String USER,String PASS){
+
+    public DatabaseConnection(String URL, String USER, String PASS) {
         this.URL = URL;
         this.USER = USER;
         this.PASS = PASS;
@@ -17,7 +17,8 @@ public class DatabaseConnection {
 
     public Connection getConnection() {
         try {
-            return DriverManager.getConnection(this.URL,this.USER, this.PASS);
+            DriverManager.registerDriver(new Driver());
+            return DriverManager.getConnection(this.URL, this.USER, this.PASS);
         } catch (SQLException ex) {
             throw new RuntimeException("Error connecting to the database", ex);
         }

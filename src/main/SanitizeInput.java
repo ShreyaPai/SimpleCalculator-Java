@@ -7,7 +7,9 @@ public class SanitizeInput {
         String addedSpaceToPlus = specialCharactersRemoved.replaceAll("[+]", " + ");
         String addedSpaceToMinus = addedSpaceToPlus.replaceAll("[-]", " - ");
         String addedSpaceToStar = addedSpaceToMinus.replaceAll("[?*]", " * ");
-        String finalString = addedSpaceToStar.replaceAll("[?/]", " / ");
+        String addedSpaceToOpenBrace = addedSpaceToStar.replaceAll("[(]", " ( ");
+        String addedSpaceToClosingBrace = addedSpaceToOpenBrace.replaceAll("[)]", " ) ");
+        String finalString = addedSpaceToClosingBrace.replaceAll("[?/]", " / ");
         return finalString;
     }
 

@@ -2,7 +2,8 @@ package main;
 
 import java.util.Stack;
 import java.util.Scanner;
-// code taken from geeksforgeeks
+
+// Code taken from geeksforgeeks
 
 public class Calculator {
 
@@ -29,16 +30,8 @@ public class Calculator {
                     sbuf.append(tokens[i++]);
                 }
                 values.push(Integer.parseInt(sbuf.toString()));
-            } // Current token is an opening brace, push it to 'ops' 
-            else if (tokens[i] == '(') {
-                ops.push(tokens[i]);
-            } // Closing brace encountered, solve entire brace 
-            else if (tokens[i] == ')') {
-                while (ops.peek() != '(') {
-                    values.push(applyOp(ops.pop(), values.pop(), values.pop()));
-                }
-                ops.pop();
-            } // Current token is an operator. 
+            }
+            
             else if (tokens[i] == '+' || tokens[i] == '-'
                     || tokens[i] == '*' || tokens[i] == '/') {
                 // While top of 'ops' has same or greater precedence to current 
@@ -51,6 +44,19 @@ public class Calculator {
                 // Push current token to 'ops'. 
                 ops.push(tokens[i]);
             }
+            
+            // Current token is an opening brace, push it to 'ops' 
+            else if (tokens[i] == '(') {
+                ops.push(tokens[i]);
+            }
+            // Closing brace encountered, solve entire brace 
+            else if (tokens[i] == ')') {
+                while (ops.peek() != '(') {
+                    values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+                }
+                ops.pop();
+            } // Current token is an operator. 
+            
         }
 
         // Entire expression has been parsed at this point, apply remaining 
@@ -88,7 +94,7 @@ public class Calculator {
                 return a * b;
             case '/':
                 if (b == 0) {
-                    throw new UnsupportedOperationException("Cannot divide by zero");
+                    throw new UnsupportedOperationException("Cannot divide by Zero");
                 }
                 return a / b;
         }
